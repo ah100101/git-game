@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>What are the Xbox Gamer Kewl Kids Playing Today?</title>
+</head>
+<body>
+  <button onclick="chooseGame()">What we playing?</button>
+  <p id="phrase"></p>
+  <script>
+    var maybe = (probability, phrase) =>
+      (Math.random() < probability) ? phrase : ''
+    var gitGame = (game, phrase, backupGame) =>
+      [ game, phrase, backupGame ].join(' ') + '.'
+    var tryBeingAngry = (noun) =>
+      (Math.floor(Math.random() * 5) + 1) === 1
+        ? 'Goddamn ' + noun
+        : noun
+    var data = {
+      games: [
+        'Halo 5',
+        'MCC',
+        'Sea of Theives',
+        'Elder Scrolls',
+        'Destiny',
+        'Call of Duty Warzone',
+        'Grounded',
+        'Gears',
+        'World War Z',
+      ].map(game => tryBeingAngry(game)),
+      backupPhrase: [
+        'and when we suck at that, we will play',
+        'and when Chris doesn\'t have it installed, we can try',
+        'until we get ranked and then we can play',
+        'until Jonathan wakes up his family because he\'s pretending to be a T-Rex, then we can switch to',
+        'until Alex drinks 3 IPAs, then we will play',
+        'until David finishes his chips, then we\'ll play'
+      ]
+    }
+    var pickOne = (list) => list[parseInt(Math.random() * list.length)]
+    var chooseGame = () => {
+      document.getElementById('phrase').innerHTML = gitGame(
+        pickOne(data.games),
+        pickOne(data.backupPhrase),
+        pickOne(data.games)
+      )
+    }
+  </script>
+</body>
+</html>
